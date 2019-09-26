@@ -76,3 +76,12 @@ nav .navbar .item a i{
 .table-bordered td, .table-bordered th {
     border: 1px solid #a9a9ff;
 }
+
+.savePokeBtn i{
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.savePokeBtn i:hover{
+    color: red;
+}

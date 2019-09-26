@@ -49,6 +49,7 @@ $pokemons = $poke->getPokemonList(5);
                     <div class="card">
                         <div class="card-header py-1">
                             Browse Pokemons
+                            <a class="btn btn-primary py-0 px-2 float-right" href="/browse.php">View all...</a>
                         </div>
                          <div class="card-body p-0">
                             <table class="table table-hover table-bordered m-0">
@@ -61,10 +62,10 @@ $pokemons = $poke->getPokemonList(5);
                                 </tr>
                                 <?php foreach ($pokemons as $pokemon) {
                                     echo "<tr><td><img src='".$pokemon['sprite']."' class='rounded-circle' width='50px'/></td>";
-                                    echo "<td><a>".$pokemon['name']."</a></td>";
+                                    echo "<td><a class='text-capitalize'>".$pokemon['name']."</a></td>";
                                     echo "<td><a>".$pokemon['height']."</a></td>";
                                     echo "<td><a>".$pokemon['weight']."</a></td>";
-                                    echo "<td><a><a onclick='SavePokemon(".$pokemon['id'].")'></a></td></tr>";
+                                    echo "<td><a><a onclick='SavePokemon(".$pokemon['id'].")' class='savePokeBtn'><i class='far fa-heart fa-2x'></i></a></td></tr>";
                                 }
 
                                 ?>
