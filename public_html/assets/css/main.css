@@ -9,6 +9,7 @@ nav{
     text-align: center;
     padding-top: 10px;
     color: yellow;
+    box-shadow: -15px 0px 20px 10px black;
 }
 
 nav img {
@@ -21,6 +22,7 @@ nav h4{
 
 nav .navbar {
     padding: 0;
+    margin-top: 25px;
 }
 
 nav .navbar .item{
@@ -38,9 +40,39 @@ nav .navbar .item a {
     font-weight: bold;
     text-align: left;
     text-decoration: none;
+    transition: 0.25s;
+}
+
+nav .navbar .item a:hover {
+    background: #980202;
 }
 
 nav .navbar .item a i{
     float: right;
     padding-top: 4px;
+}
+
+.content {
+    padding-left: 275px !important;
+}
+
+.content h2 {
+    color: yellow;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card {
+    background-color: #cacaff !important;
+}
+
+.card-header {
+    background-color: #a9a9ff !important;
+    padding: 5px 20px;
+    font-weight: bold;
+    color: blue;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #a9a9ff;
 }
