@@ -4,7 +4,7 @@ include("assets/main.php");
 
 $poke = new Poke();
 
-$pokemons = $poke->getPokemonList(50);
+//$pokemons = $poke->getPokemonList(20);
 ?>
 
 <html>
@@ -18,6 +18,8 @@ $pokemons = $poke->getPokemonList(50);
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <script src="/assets/js/browse.js"></script>
     </head>
 
     <body>
@@ -49,8 +51,11 @@ $pokemons = $poke->getPokemonList(50);
                     <a class="btn btn-primary py-0 px-2 float-right mx-1 mt-1" id="browseNextPage"><i class="fas fa-arrow-right"></i></a>
                     <a class="btn btn-primary py-0 px-2 float-right mx-1 mt-1 disabled" id="browsePreviousPage"><i class="fas fa-arrow-left"></i></a>
                 </div>
-                <div class="card-body p-0" id="browseContainer">
-                    <table class="table table-hover table-bordered m-0" id="browseContent">
+                <div class="card-body p-0" id="browseContainer text-center ">
+                    <div class="spinner-border text-warning my-3 tableSpinner" role="status" id="tableSpinner">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <table class="table table-hover table-bordered m-0 text-center d-none" id="browseContent">
                         <tr>
                             <th></th>
                             <th>Name</th>

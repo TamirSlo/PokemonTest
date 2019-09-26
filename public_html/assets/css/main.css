@@ -79,9 +79,19 @@ nav .navbar .item a i{
 
 .savePokeBtn i{
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .savePokeBtn i:hover{
     color: red;
+}
+
+#browseNextPage, #browsePreviousPage {
+    cursor: pointer;
+}
+
+.tableSpinner {
+    position: relative;
+    left: 50%;
+    font-size: 18px;
 }
