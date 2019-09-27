@@ -27,7 +27,7 @@ $(document).ready(function(){
                 <tr><td>Weight</td><td><a>"+poke1.weight+"</a></td><td><a>"+poke2.weight+"</a></td></tr> \
                 <tr><td>HP</td><td><a>Base Stat: "+poke1.stats.hp[0]+" | Effort: "+poke1.stats.hp[1]+"</a></td><td><a>Base Stat: "+poke2.stats.hp[0]+" | Effort: "+poke2.stats.hp[1]+"</a></td></tr> \
                 <tr><td>Attack</td><td><a>Base Stat: "+poke1.stats.attack[0]+" | Effort: "+poke1.stats.attack[1]+"</a></td><td><a>Base Stat: "+poke2.stats.attack[0]+" | Effort: "+poke2.stats.attack[1]+"</a></td></tr> \
-                <tr><td>Defense</td><td><a>Base Stat: "+poke1.stats.defense[0]+" | Effort: "+poke1.stats.defense[1]+"</a></td><td><a>Base Stat: "+poke2.stats.defense[0]+" | Effort: "+poke2.stats.defense[1]+"</a></td></tr>";
+                <tr><td>Defence</td><td><a>Base Stat: "+poke1.stats.defense[0]+" | Effort: "+poke1.stats.defense[1]+"</a></td><td><a>Base Stat: "+poke2.stats.defense[0]+" | Effort: "+poke2.stats.defense[1]+"</a></td></tr>";
 
             table.html(content);
             table.toggleClass("d-none");
@@ -39,12 +39,43 @@ $(document).ready(function(){
         if (getCookie("compare1") && getCookie("compare2")) {
             var c1 = getCookie("compare1");
             var c2 = getCookie("compare2");
+            
+            poke1 = getPokemonInfo(c1);
+            poke2 = getPokemonInfo(c2);
+
+            $.when( r1, r2 ).done(function(){
+                var table = $('#compareTable');
+                var spinner = $('#tableSpinner2');
+    
+                content = "<tr><th></th><th><a class='text-capitalize'>"+poke1.name+"</a></th><th><a class='text-capitalize'>"+poke2.name+"</a></th></tr> \
+                    <tr><td></td><td><img src='"+poke1.sprite+"' class='rounded-circle' width='50px'/></td><td><img src='"+poke2.sprite+"' class='rounded-circle' width='50px'/></td></tr> \
+                    <tr><th>Height</th><td><a>"+poke1.height+"</a></td><td><a>"+poke2.height+"</a></td></tr> \
+                    <tr><th>Weight</th><td><a>"+poke1.weight+"</a></td><td><a>"+poke2.weight+"</a></td></tr> \
+                    <tr><th>HP</th><td><a>Base Stat: "+poke1.stats.hp[0]+" | Effort: "+poke1.stats.hp[1]+"</a></td><td><a>Base Stat: "+poke2.stats.hp[0]+" | Effort: "+poke2.stats.hp[1]+"</a></td></tr> \
+                    <tr><th>Attack</th><td><a>Base Stat: "+poke1.stats.attack[0]+" | Effort: "+poke1.stats.attack[1]+"</a></td><td><a>Base Stat: "+poke2.stats.attack[0]+" | Effort: "+poke2.stats.attack[1]+"</a></td></tr> \
+                    <tr><th>Defence</th><td><a>Base Stat: "+poke1.stats.defense[0]+" | Effort: "+poke1.stats.defense[1]+"</a></td><td><a>Base Stat: "+poke2.stats.defense[0]+" | Effort: "+poke2.stats.defense[1]+"</a></td></tr> \
+                    <tr><th>Spec. Attack</th><td><a>Base Stat: "+poke1.stats.sattack[0]+" | Effort: "+poke1.stats.sattack[1]+"</a></td><td><a>Base Stat: "+poke2.stats.sattack[0]+" | Effort: "+poke2.stats.sattack[1]+"</a></td></tr> \
+                    <tr><th>Spec. Defence</th><td><a>Base Stat: "+poke1.stats.sdefense[0]+" | Effort: "+poke1.stats.sdefense[1]+"</a></td><td><a>Base Stat: "+poke2.stats.sdefense[0]+" | Effort: "+poke2.stats.sdefense[1]+"</a></td></tr> \
+                    <tr><th>Speed</th><td><a>Base Stat: "+poke1.stats.speed[0]+" | Effort: "+poke1.stats.speed[1]+"</a></td><td><a>Base Stat: "+poke2.stats.speed[0]+" | Effort: "+poke2.stats.speed[1]+"</a></td></tr>";
+    
+                table.html(content);
+                table.toggleClass("d-none");
+                spinner.toggleClass("d-none");
+            });
         }else{
             table.toggleClass("d-none");
             spinner.toggleClass("d-none");
             table.html("Please select two Pokemon in Browse to compare.");
         }
     }
+
+    $("#clearComparison").click(function(e){
+        e.preventDefault();
+        rmCookie("compare1");
+        rmCookie("compare2");
+        $("#clearComparison").toggleClass("btn-primary btn-warning disabled");
+        $("#clearComparison").html("Cleared!");
+    })
 });
 
 function getPokemonInfo(id){
@@ -106,4 +137,8 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+function rmCookie(cname) {
+    document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
 }

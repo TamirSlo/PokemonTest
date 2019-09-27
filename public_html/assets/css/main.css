@@ -77,13 +77,37 @@ nav .navbar .item a i{
     border: 1px solid #a9a9ff;
 }
 
+
+#browseContainer .table-bordered td:first-child {
+    padding: 0;
+}
+
 .savePokeBtn i{
+    color: #007bff;
     cursor: pointer;
     transition: 0.2s;
 }
 
+.savePokeBtn.selected i{
+    color: rgb(192, 0, 0);
+}
+
 .savePokeBtn i:hover{
     color: red;
+}
+
+.comparePokeBtn i{
+    color: #007bff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.comparePokeBtn.selected i{
+    color: #90b800;
+}
+
+.comparePokeBtn i:hover{
+    color: rgb(172, 169, 9);
 }
 
 #browseNextPage, #browsePreviousPage {
