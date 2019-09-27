@@ -51,7 +51,7 @@ $poke = new Poke();
                     <a class="btn btn-primary py-0 px-2 float-right mx-1 mt-1" id="browseNextPage"><i class="fas fa-arrow-right"></i></a>
                     <a class="btn btn-primary py-0 px-2 float-right mx-1 mt-1 disabled" id="browsePreviousPage"><i class="fas fa-arrow-left"></i></a>
                 </div>
-                <div class="card-body p-0" id="browseContainer text-center ">
+                <div class="card-body p-0" id="browseContainer">
                     <div class="spinner-border text-warning my-3 tableSpinner" role="status" id="tableSpinner">
                         <span class="sr-only">Loading...</span>
                     </div>
