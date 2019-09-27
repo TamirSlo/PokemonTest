@@ -42,8 +42,8 @@ $poke = new Poke();
             </ul>
         </nav>
         <div class="content container-fluid py-2">
-            <h2 class="mb-4">Browse Pokemons<br/>
-                <small>Explore the wild world of pokemons and find different species!</small>
+            <h2 class="mb-4">Browse Pokemon<br/>
+                <small>Explore the wild world of pokemon and find different species!</small>
             </h2>
             <div class="card">
                 <div class="card-header py-1">
@@ -56,22 +56,6 @@ $poke = new Poke();
                         <span class="sr-only">Loading...</span>
                     </div>
                     <table class="table table-hover table-bordered m-0 text-center d-none" id="browseContent">
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Height</th>
-                            <th>Weight</th>
-                            <th>Save</th>
-                        </tr>
-                        <?php foreach ($pokemons as $pokemon) {
-                            echo "<tr><td><img src='".$pokemon['sprite']."' class='rounded-circle' width='50px'/></td>";
-                            echo "<td><a class='text-capitalize'>".$pokemon['name']."</a></td>";
-                            echo "<td><a>".$pokemon['height']."</a></td>";
-                            echo "<td><a>".$pokemon['weight']."</a></td>";
-                            echo "<td><a><a onclick='SavePokemon(".$pokemon['id'].")' class='savePokeBtn'><i class='far fa-heart fa-2x'></i></a></td></tr>";
-                        }
-
-                        ?>
                     </table>
                 </div>
             </div>

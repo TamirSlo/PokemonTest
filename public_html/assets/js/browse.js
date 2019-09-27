@@ -1,7 +1,12 @@
 var next;
 var previous;
 $(document).ready(function(){
-    loadPokemons();
+    
+    if(window.location.pathname == "/"){
+        loadPokemons("https://pokeapi.co/api/v2/pokemon/?limit=5");
+    }else{
+        loadPokemons();
+    }
 
     $("#browseNextPage").click(function(){
         var table = $('#browseContent');
@@ -24,7 +29,6 @@ function loadPokemons(url = "https://pokeapi.co/api/v2/pokemon/") {
     $.get(url)
         .done(function(data){
             var pokemons = data.results;
-            console.log(url);
             
 
             next = data.next;
@@ -36,6 +40,7 @@ function loadPokemons(url = "https://pokeapi.co/api/v2/pokemon/") {
             var content = "";
             table.html("<tr><th></th><th>Name</th><th>Height</th><th>Weight</th><th>Save</th></tr>");
             var last;
+            
             for (var i = 0; i < pokemons.length; i++) {
                 
                 uri = pokemons[i].url;
@@ -51,16 +56,15 @@ function loadPokemons(url = "https://pokeapi.co/api/v2/pokemon/") {
                     content = content + "<td><a>"+height+"</a></td>";
                     content = content + "<td><a>"+weight+"</a></td>";
                     content = content + "<td><a><a onclick='SavePokemon("+id+")' class='savePokeBtn'><i class='far fa-heart fa-2x'></i></a></td></tr>";
-                    if(last==name){
+
+                    if((content.split('<tr>').length-1)==limit){
                         table.append(content);
                         table.toggleClass("d-none");
                         spinner.toggleClass("d-none");
                     }
                 });
 
-                if(i==19){
-                    last = pokemons[i].name;
-                }
+                var limit = pokemons.length;
             }
 
             if (data.previous != null) {

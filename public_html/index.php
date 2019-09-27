@@ -4,8 +4,6 @@ include("assets/main.php");
 
 $poke = new Poke();
 
-$pokemons = $poke->getPokemonList(5);
-
 ?>
 
 <html>
@@ -19,6 +17,8 @@ $pokemons = $poke->getPokemonList(5);
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <script src="/assets/js/browse.js"></script>
     </head>
 
     <body>
@@ -51,24 +51,11 @@ $pokemons = $poke->getPokemonList(5);
                             Browse Pokemons
                             <a class="btn btn-primary py-0 px-2 float-right" href="/browse.php">View all...</a>
                         </div>
-                         <div class="card-body p-0">
-                            <table class="table table-hover table-bordered m-0">
-                                <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Height</th>
-                                    <th>Weight</th>
-                                    <th>Save</th>
-                                </tr>
-                                <?php foreach ($pokemons as $pokemon) {
-                                    echo "<tr><td><img src='".$pokemon['sprite']."' class='rounded-circle' width='50px'/></td>";
-                                    echo "<td><a class='text-capitalize'>".$pokemon['name']."</a></td>";
-                                    echo "<td><a>".$pokemon['height']."</a></td>";
-                                    echo "<td><a>".$pokemon['weight']."</a></td>";
-                                    echo "<td><a><a onclick='SavePokemon(".$pokemon['id'].")' class='savePokeBtn'><i class='far fa-heart fa-2x'></i></a></td></tr>";
-                                }
-
-                                ?>
+                        <div class="card-body p-0">
+                            <div class="spinner-border text-warning my-3 tableSpinner" role="status" id="tableSpinner">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <table class="table table-hover table-bordered m-0 text-center d-none" id="browseContent">
                             </table>
                         </div>
                     </div>
