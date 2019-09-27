@@ -19,6 +19,7 @@ $poke = new Poke();
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
         <script src="/assets/js/browse.js"></script>
+        <script src="/assets/js/compare.js"></script>
     </head>
 
     <body>
@@ -64,9 +65,15 @@ $poke = new Poke();
                     <div class="card">
                         <div class="card-header py-1">
                             Compare two species
+                            <a class="btn btn-primary py-0 px-2 float-right" href="/compare.php">Try it yourself...</a>
                         </div>
-                         <div class="card-body">
-                            Title
+                         <div class="card-body p-0">
+                             <div class="spinner-border text-warning my-3 tableSpinner" role="status" id="tableSpinner2">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <table class="table table-hover table-bordered m-0 text-center compareTable d-none" id="compareTable">
+                                
+                            </table>
                         </div>
                     </div>
                 </div>
