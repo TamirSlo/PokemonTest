@@ -8,8 +8,9 @@ $error = false;
 if(isset($_POST['username'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $tname = $_POST['tname'];
 
-    $r = $poke->Login($username,$password);
+    $r = $poke->Register($username,$password,$tname);
     if(!$r['success']){
         $error = $r['error'];
     }
@@ -50,8 +51,8 @@ if(isset($_POST['username'])){
             </ul>
         </nav>
         <div class="content container-fluid py-2">
-            <h2 class="mb-4">Login to PokeSite<br/>
-                <small>Take your first step and login with your personal trainer account!</small>
+            <h2 class="mb-4">Register to PokeSite<br/>
+                <small>Take your first step and create your personal trainer account!</small>
             </h2>
             <div class="container w-25 text-center">
                 <form class="mb-1" method="post">
@@ -60,11 +61,14 @@ if(isset($_POST['username'])){
                         <input type="text" class="form-control" name="username" placeholder="Username">
                     </div>
                     <div class="form-group">
+                        <input type="text" class="form-control" name="tname" placeholder="Trainer Name">
+                    </div>
+                    <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-danger text-warning font-weight-bold">Submit</button>
+                    <button type="submit" class="btn btn-danger text-warning font-weight-bold">Register</button>
                 </form>
-                <a href="/register.php" class="text-warning">Or Create your trainer here...</a>
+                <a href="/login.php" class="text-warning">Or login here...</a>
             </div>
         </div>
     </body>

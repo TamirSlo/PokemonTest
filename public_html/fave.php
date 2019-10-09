@@ -3,6 +3,27 @@
 include("assets/main.php");
 
 $poke = new Poke();
+
+if(isset($_POST['action'])){
+    $action = $_POST['action'];
+
+    if($action == "toggle"){
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $height = $_POST['height'];
+        $weight = $_POST['weight'];
+        $r = $poke->toggleFave($id,$name,$height,$weight);
+        die(json_encode($r));
+    }
+}
+
+$s = $poke->getFaves();
+if(count($s['results']) > 0){
+    $faves = $s['results'];
+}else{
+    $faves = false;
+}
+
 ?>
 
 <html>
@@ -17,7 +38,7 @@ $poke = new Poke();
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-        <script src="/assets/js/compare.js"></script>
+        <script src="/assets/js/browse.js"></script>
     </head>
 
     <body>
@@ -49,20 +70,32 @@ $poke = new Poke();
             </ul>
         </nav>
         <div class="content container-fluid py-2">
-            <h2 class="mb-4">Compare Pokemons<br/>
-                <small>Find out the differences between pokemons and their species.</small>
+            <h2 class="mb-4">Saved Pokemon<br/>
+                <small>Check the stats of your saved Pokemon as a Trainer and keep track of your lists!</small>
             </h2>
             <div class="card">
                 <div class="card-header py-1">
-                    Compare two species
-                    <a class="btn btn-primary py-0 px-2 mx-2 float-right" href="/browse.php">Browse Pokemon</a>
-                    <a class="btn btn-primary py-0 px-2 mx-2 float-right" href="/compare.php" id="clearComparison">Clear Selected Pokemon</a>
+                    Saved Pokemons
                 </div>
-                    <div class="card-body p-0">
-                        <div class="spinner-border text-warning my-3 tableSpinner" role="status" id="tableSpinner2">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                    <table class="table table-hover table-bordered m-0 text-center compareTable d-none" id="compareTable">
+                <div class="card-body p-0">
+                    
+                    <table class="table table-hover table-bordered m-0 text-center">
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Compare / Save</th>
+                        </tr>
+                        <?php foreach ($faves as $pokemon) {
+                            //echo $pokemon;
+                            echo "<tr><td><img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/".$pokemon['PID'].".png' class='rounded-circle' width='50px'/></td>";
+                            echo "<td><a class='text-capitalize'>".$pokemon['Name']."</a></td>";
+                            echo "<td><a>".$pokemon['Height']."</a></td>";
+                            echo "<td><a>".$pokemon['Weight']."</a></td>";
+                            echo "<td><a onclick='ComparePokemon(this,".$pokemon['PID'].")' class='comparePokeBtn mx-2'><i class='fas fa-list fa-2x'></i></a>";
+                            echo "<a onclick='SavePokemon(this,".$pokemon['PID'].",\"".$pokemon['Name']."\",".$pokemon['Height'].",".$pokemon['Weight'].")' class='savePokeBtn mx-2 selected'><i class='fas fa-heart fa-2x'></i></a></td></tr>";
+                        } ?>
                     </table>
                 </div>
             </div>

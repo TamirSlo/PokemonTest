@@ -36,9 +36,18 @@ $poke = new Poke();
                 <li class="item">
                     <a href="/compare.php">Compare <i class="fas fa-chevron-right"></i></a>
                 </li>
-                <li class="item">
-                    <a href="/login.php">Login <i class="fas fa-chevron-right"></i></a>
-                </li>
+                <?php if(!$poke->logged_in){ ?>
+                    <li class="item">
+                        <a href="/login.php">Login <i class="fas fa-chevron-right"></i></a>
+                    </li>
+                <?php }else{ ?>
+                    <li class="item">
+                        <a href="/fave.php">Saved <i class="fas fa-chevron-right"></i></a>
+                    </li>
+                    <li class="item">
+                        <a href="/logout.php">Logout <i class="fas fa-chevron-right"></i></a>
+                    </li>
+                <?php } ?>
             </ul>
         </nav>
         <div class="content container-fluid py-2">

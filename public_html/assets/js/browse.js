@@ -41,7 +41,7 @@ function loadPokemons(url = "https://pokeapi.co/api/v2/pokemon/") {
             var spinner = $('#tableSpinner');
 
             var content = "";
-            table.html("<tr><th></th><th>Name</th><th>Height</th><th>Weight</th><th>Save</th></tr>");
+            table.html("<tr><th></th><th>Name</th><th>Height</th><th>Weight</th><th>Compare / Save</th></tr>");
             var last;
             
             for (var i = 0; i < pokemons.length; i++) {
@@ -62,7 +62,7 @@ function loadPokemons(url = "https://pokeapi.co/api/v2/pokemon/") {
                     content = content + "<td><a>"+height+"</a></td>";
                     content = content + "<td><a>"+weight+"</a></td>";
                     content = content + "<td><a onclick='ComparePokemon(this,"+id+")' class='comparePokeBtn mx-2"+ex+"'><i class='fas fa-list fa-2x'></i></a> \
-                    <a onclick='SavePokemon("+id+")' class='savePokeBtn mx-2'><i class='fas fa-heart fa-2x'></i></a></td></tr>";
+                    <a onclick='SavePokemon(this,"+id+",\""+name+"\","+height+","+weight+")' class='savePokeBtn mx-2'><i class='fas fa-heart fa-2x'></i></a></td></tr>";
 
                     if((content.split('<tr>').length-1)==limit){
                         table.append(content);
@@ -135,4 +135,15 @@ function ComparePokemon(e,id){
             $(e).addClass("selected");
         }
     }
+}
+
+function SavePokemon(e,id,name,weight,height){
+    
+    $.post("/fave.php", {action: "toggle", id: id, name: name, weight: weight, height: height})
+        .done(function(data){
+            data = JSON.parse(data);
+            if(data.success){
+                $(e).toggleClass("selected");
+            }
+        });
 }
